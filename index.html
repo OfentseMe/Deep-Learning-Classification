@@ -1,129 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Deep Learning Road Classification</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="U-Net based deep learning model for road segmentation using aerial imagery.">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            margin: 0;
-            padding: 0 1rem;
-            background: #f9fafb;
-            color: #111827;
-            line-height: 1.6;
-        }
-        header {
-            text-align: center;
-            padding: 2rem 0;
-            background-color: #2563eb;
-            color: white;
-        }
-        h1 {
-            font-size: 2.5rem;
-            margin: 0.5rem 0;
-        }
-        section {
-            max-width: 800px;
-            margin: 2rem auto;
-        }
-        h2 {
-            color: #2563eb;
-            border-bottom: 2px solid #2563eb;
-            padding-bottom: 0.3rem;
-        }
-        pre {
-            background: #e5e7eb;
-            padding: 1rem;
-            overflow-x: auto;
-        }
-        code {
-            font-family: monospace;
-        }
-        .sample-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 1rem;
-        }
-        .sample-table th, .sample-table td {
-            border: 1px solid #d1d5db;
-            padding: 0.5rem;
-            text-align: center;
-        }
-        footer {
-            text-align: center;
-            margin: 3rem 0;
-            font-size: 0.9rem;
-            color: #6b7280;
-        }
-        a {
-            color: #2563eb;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Road Classification Model</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* Reset & Basics */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f8f9fa;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    a {
+      color: #007bff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    header {
+      background: #343a40;
+      color: white;
+      padding: 3rem 1rem 2rem 1rem;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    section {
+      padding: 2rem 1rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .gallery-container {
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      display: flex;
+      gap: 1rem;
+      padding: 1rem 0;
+    }
+
+    .image-card {
+      scroll-snap-align: start;
+      flex-shrink: 0;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      max-width: 100%;
+    }
+
+    .image-card img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px 10px 0 0;
+    }
+
+    .caption {
+      padding: 0.5rem 1rem;
+      text-align: center;
+      font-size: 0.95rem;
+      color: #555;
+    }
+
+    footer {
+      background: #343a40;
+      color: white;
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.9rem;
+    }
+
+    @media (min-width: 768px) {
+      .gallery-container {
+        padding: 2rem 0;
+      }
+
+      .image-card {
+        width: 600px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<header>
-    <h1>🛣️ Road Classification with U-Net</h1>
-    <p>Segmenting roads from aerial imagery using deep learning</p>
-</header>
+  <header>
+    <h1>Road Classification Using Deep Learning</h1>
+    <p>This project uses a U-Net architecture trained on the DeepGlobe dataset to segment and classify roads from satellite imagery.</p>
+  </header>
 
-<section>
-    <h2>🚀 Overview</h2>
-    <p>This project uses a U-Net model for semantic segmentation to classify road pixels in high-resolution satellite imagery, developed as part of a research initiative in October 2024.</p>
+  <section>
+    <h2 style="text-align: center; margin-bottom: 1rem;">Model Results</h2>
+    <div class="gallery-container">
+      <!-- Image 1 -->
+      <div class="image-card">
+        <img src="images/result1.jpg" alt="Example 1">
+        <div class="caption">Example 1: Input | Ground Truth | Prediction</div>
+      </div>
 
-    <h2>📊 Key Features</h2>
-    <ul>
-        <li>Model: U-Net architecture (PyTorch)</li>
-        <li>Dataset: <a href="https://deepglobe.org/challenge.html#road" target="_blank">DeepGlobe Road Extraction</a></li>
-        <li>Task: Binary road vs non-road segmentation</li>
-        <li>Metrics: IoU, F1 Score</li>
-    </ul>
+      <!-- Image 2 -->
+      <div class="image-card">
+        <img src="images/result2.jpg" alt="Example 2">
+        <div class="caption">Example 2: Input | Ground Truth | Prediction</div>
+      </div>
 
-    <h2>🧠 Architecture</h2>
-    <p>Inspired by the original U-Net paper for biomedical segmentation:</p>
-    <p><a href="https://arxiv.org/abs/1505.04597" target="_blank">🔗 U-Net: Convolutional Networks for Biomedical Image Segmentation</a></p>
+      <!-- Image 3 -->
+      <div class="image-card">
+        <img src="images/result3.jpg" alt="Example 3">
+        <div class="caption">Example 3: Input | Ground Truth | Prediction</div>
+      </div>
 
-    <h2>📂 Project Structure</h2>
-    <pre><code>├── data/
-├── model/
-├── notebooks/
-├── utils/
-├── results/
-└── README.md</code></pre>
+      <!-- Add more <div class="image-card"> blocks as needed -->
+    </div>
+  </section>
 
-    <h2>🖼️ Example Output</h2>
-    <table class="sample-table">
-        <tr>
-            <th>Input Image</th>
-            <th>Ground Truth</th>
-            <th>Prediction</th>
-        </tr>
-        <tr>
-            <td><img src="results/sample_input.png" alt="input" width="150"></td>
-            <td><img src="results/sample_gt.png" alt="ground truth" width="150"></td>
-            <td><img src="results/sample_pred.png" alt="prediction" width="150"></td>
-        </tr>
-    </table>
+  <section>
+    <h2>About the Project</h2>
+    <p>This model was trained in October 2024 using the U-Net architecture. It performs semantic segmentation to identify roads in satellite imagery.</p>
+    <p>
+      📄 <a href="https://arxiv.org/abs/1505.04597" target="_blank">Original U-Net Paper (Biomedical Image Segmentation)</a><br>
+      🌐 <a href="https://deepglobe.org/" target="_blank">DeepGlobe Dataset</a>
+    </p>
+  </section>
 
-    <h2>📧 Contact</h2>
-    <p>Developed by <strong>Your Name</strong></p>
-    <p><a href="mailto:your.email@example.com">your.email@example.com</a></p>
-    <p><a href="https://github.com/yourusername">GitHub Profile</a></p>
-
-    <h2>📜 License</h2>
-    <p>This project is licensed under the MIT License.</p>
-</section>
-
-<footer>
-    © 2025 Your Name · Built with ❤️ and U-Net
-</footer>
+  <footer>
+    Made with ❤️ by [Your Name] · Hosted on GitHub Pages
+  </footer>
 
 </body>
 </html>
