@@ -79,6 +79,7 @@
       max-width: 320px;
       margin-bottom: 2rem;
       transition: transform 0.3s ease;
+      cursor: pointer;
     }
 
     .image-card:hover {
@@ -116,16 +117,26 @@
       text-decoration: underline;
     }
 
-    @media (min-width: 768px) {
-      .image-card {
-        width: 45%;
-      }
+    /* Lightbox Styles */
+    #lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      justify-content: center;
+      align-items: center;
     }
 
-    @media (min-width: 1024px) {
-      .image-card {
-        width: 30%;
-      }
+    #lightbox img {
+      max-width: 80%;
+      max-height: 80%;
+    }
+
+    #lightbox:target {
+      display: flex;
     }
 
   </style>
@@ -140,22 +151,20 @@
   <section>
     <h2>Model Results</h2>
     <div class="gallery-container">
-
-      <div class="image-card">
+      <a href="#img1" class="image-card">
         <img src="images/PredictedRoutes_1.png" alt="Example 1">
         <div class="caption">Example 1: Input | Predicted | Ground Truth</div>
-      </div>
+      </a>
 
-      <div class="image-card">
+      <a href="#img2" class="image-card">
         <img src="images/PredictedRoutes_2.png" alt="Example 2">
         <div class="caption">Example 2: Input | Predicted | Ground Truth</div>
-      </div>
+      </a>
 
-      <div class="image-card">
+      <a href="#img3" class="image-card">
         <img src="images/PredictedRoutes_3.png" alt="Example 3">
         <div class="caption">Example 3: Input | Predicted | Ground Truth</div>
-      </div>
-
+      </a>
     </div>
   </section>
 
@@ -178,7 +187,7 @@
       <li>🧠 <strong>U-Net Architecture</strong> for semantic segmentation.</li>
       <li>🛰️ <strong>DeepGlobe Dataset</strong> containing satellite imagery.</li>
       <li>💻 <strong>Python</strong> for model training and development.</li>
-      <li>📦 <strong>Keras & TensorFlow</strong> for deep learning model building.</li>
+      <li>📦 <strong>TensorFlow</strong> for deep learning model building.</li>
     </ul>
   </section>
 
@@ -186,9 +195,6 @@
     <h2>Euclidean Distance Calculations</h2>
     <p>The road classification model makes use of Euclidean distance calculations to enhance the accuracy of road detection. Euclidean distance is the straight-line distance between two points in a multidimensional space, which is crucial in determining how pixels in the segmented image relate to each other in terms of proximity. The Euclidean distance is calculated based on the pixel values of the image, helping the model better understand the spatial relationships between different road segments and surrounding features.</p>
     
-    <h3>Background on Euclidean Distance</h3>
-    <p>Euclidean distance, a fundamental concept in geometry, has been a key tool in spatial analysis for centuries. It has been used in various fields, from geography to machine learning, as a metric to measure similarity or dissimilarity between objects. In remote sensing and satellite image processing, Euclidean distance plays a significant role in determining the closeness of features, like roads or buildings, to one another. This approach improves the segmentation model by fine-tuning the boundaries between road features and non-road features.</p>
-
     <h3>Improving Ground Surveying Techniques</h3>
     <p>Ground surveying has traditionally been a time-consuming and resource-intensive process, requiring human effort, field equipment, and physical access to the terrain. However, with advancements in remote sensing, satellite imagery, and deep learning, road classification models are enhancing ground surveying techniques by automating the process. The combination of satellite data with machine learning algorithms allows for quicker, more accurate surveying without the need for extensive manual intervention.</p>
     <p>The ability to classify roads automatically from satellite imagery significantly reduces the cost and time associated with traditional surveying methods. Moreover, it opens the door to more comprehensive and up-to-date mapping, even in areas that are difficult to access. This model, therefore, represents a major step forward in improving both the efficiency and accuracy of ground surveying practices in the field of urban planning and environmental monitoring.</p>
@@ -196,8 +202,30 @@
 
   <footer>
     <p>· Made by Ofentse Menwe ·</p>
-    <p>For more information, feel free to <a href="mailto:ofentse@domain.com">contact me</a>.</p>
+    <p>For more information, feel free to contact me: Ofentse.Menwe1@gmail.com</p>
   </footer>
+
+  <!-- Lightbox Modals -->
+  <div id="img1" class="lightbox">
+    <div>
+      <img src="images/PredictedRoutes_1.png" alt="Example 1">
+      <a href="#">Close</a>
+    </div>
+  </div>
+
+  <div id="img2" class="lightbox">
+    <div>
+      <img src="images/PredictedRoutes_2.png" alt="Example 2">
+      <a href="#">Close</a>
+    </div>
+  </div>
+
+  <div id="img3" class="lightbox">
+    <div>
+      <img src="images/PredictedRoutes_3.png" alt="Example 3">
+      <a href="#">Close</a>
+    </div>
+  </div>
 
 </body>
 </html>
