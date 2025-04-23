@@ -11,44 +11,6 @@
       margin: 0;
       padding: 0;
     }
-    <!-- Lightbox Script -->
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const images = document.querySelectorAll(".image-card img");
-
-    images.forEach(img => {
-      img.style.cursor = "pointer";
-      img.addEventListener("click", () => {
-        const overlay = document.createElement("div");
-        overlay.style.position = "fixed";
-        overlay.style.top = "0";
-        overlay.style.left = "0";
-        overlay.style.width = "100%";
-        overlay.style.height = "100%";
-        overlay.style.background = "rgba(0,0,0,0.8)";
-        overlay.style.display = "flex";
-        overlay.style.alignItems = "center";
-        overlay.style.justifyContent = "center";
-        overlay.style.zIndex = "9999";
-
-        const bigImage = document.createElement("img");
-        bigImage.src = img.src;
-        bigImage.style.maxWidth = "90%";
-        bigImage.style.maxHeight = "90%";
-        bigImage.style.border = "4px solid white";
-        bigImage.style.borderRadius = "8px";
-
-        overlay.appendChild(bigImage);
-        document.body.appendChild(overlay);
-
-        overlay.addEventListener("click", () => {
-          overlay.remove();
-        });
-      });
-    });
-  });
-</script>
-
 
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -69,55 +31,62 @@
     header {
       background: #343a40;
       color: white;
-      padding: 3rem 1rem 2rem 1rem;
+      padding: 4rem 1rem 3rem 1rem;
       text-align: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
 
     header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
     }
 
     header p {
-      font-size: 1.1rem;
-      max-width: 600px;
+      font-size: 1.2rem;
+      max-width: 700px;
       margin: 0 auto;
     }
 
     section {
-      padding: 2rem 1rem;
-      max-width: 1000px;
-      margin: auto;
+      padding: 3rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
     }
 
     .gallery-container {
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
       display: flex;
-      gap: 1rem;
-      padding: 1rem 0;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
     }
 
     .image-card {
-      scroll-snap-align: start;
-      flex-shrink: 0;
       background: white;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      max-width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: transform 0.3s ease-in-out;
+      width: calc(33.33% - 2rem);
+      cursor: pointer;
+    }
+
+    .image-card:hover {
+      transform: scale(1.05);
     }
 
     .image-card img {
       width: 100%;
       height: auto;
-      border-radius: 10px 10px 0 0;
+      display: block;
+      border-bottom: 4px solid #007bff;
     }
 
     .caption {
-      padding: 0.5rem 1rem;
+      padding: 1rem;
       text-align: center;
-      font-size: 0.95rem;
+      font-size: 1rem;
       color: #555;
+      background: #f8f9fa;
     }
 
     footer {
@@ -128,15 +97,64 @@
       font-size: 0.9rem;
     }
 
-    @media (min-width: 768px) {
+    /* Lightbox Styling */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      color: white;
+      font-size: 2rem;
+      background: rgba(0, 0, 0, 0.6);
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .close-btn:hover {
+      background: rgba(0, 0, 0, 0.8);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      header {
+        padding: 3rem 1rem 2rem 1rem;
+      }
+
       .gallery-container {
-        padding: 2rem 0;
+        flex-direction: column;
+        gap: 1rem;
       }
 
       .image-card {
-        width: 600px;
+        width: 100%;
       }
     }
+
   </style>
 </head>
 <body>
@@ -147,22 +165,22 @@
   </header>
 
   <section>
-    <h2 style="text-align: center; margin-bottom: 1rem;">Model Results</h2>
+    <h2 style="text-align: center; margin-bottom: 1.5rem;">Model Results</h2>
     <div class="gallery-container">
 
       <div class="image-card">
-        <img src="images/PredictedRoutes_1.png" alt="Example 1">
+        <img src="images/PredictedRoutes_1.png" alt="Example 1" class="lightbox-trigger">
         <div class="caption">Example 1: Input | Predicted | Ground Truth</div>
       </div>
 
       <div class="image-card">
-          <img src="images/PredictedRoutes_2.png" alt="Example 2">
-         <div class="caption">Example 2: Input | Predicted | Ground Truth</div>
+        <img src="images/PredictedRoutes_2.png" alt="Example 2" class="lightbox-trigger">
+        <div class="caption">Example 2: Input | Predicted | Ground Truth</div>
       </div>
 
       <div class="image-card">
-          <img src="images/PredictedRoutes_3.png" alt="Example 3">
-         <div class="caption">Example 3: Input | Predicted | Ground Truth</div>
+        <img src="images/PredictedRoutes_3.png" alt="Example 3" class="lightbox-trigger">
+        <div class="caption">Example 3: Input | Predicted | Ground Truth</div>
       </div>
 
     </div>
@@ -180,6 +198,38 @@
   <footer>
     · Made by Ofentse Menwe ·
   </footer>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="close-btn" id="close-btn">&times;</button>
+    <img id="lightbox-image" src="" alt="Full Image">
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const images = document.querySelectorAll(".lightbox-trigger");
+      const lightbox = document.getElementById("lightbox");
+      const lightboxImage = document.getElementById("lightbox-image");
+      const closeButton = document.getElementById("close-btn");
+
+      images.forEach(img => {
+        img.addEventListener("click", () => {
+          lightbox.style.display = "flex";
+          lightboxImage.src = img.src;
+        });
+      });
+
+      closeButton.addEventListener("click", () => {
+        lightbox.style.display = "none";
+      });
+
+      lightbox.addEventListener("click", (event) => {
+        if (event.target === lightbox) {
+          lightbox.style.display = "none";
+        }
+      });
+    });
+  </script>
 
 </body>
 </html>
