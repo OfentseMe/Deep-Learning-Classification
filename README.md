@@ -20,15 +20,14 @@ DeepGlobe 2018 Road Extraction Dataset
 
 📖 Reference Paper
 
-U-Net: Convolutional Networks for Biomedical Image Segmentation
-https://arxiv.org/pdf/1505.04597
+U-Net: Convolutional Networks for Biomedical Image Segmentation: https://arxiv.org/pdf/1505.04597
 
 Originally designed for biomedical segmentation, U-Net has proven highly effective for general semantic segmentation tasks such as road extraction from aerial images.
 
-🚀 Getting Started
-🔧 Prerequisites
-Python 3.9+
 
+🔧 Prerequisites: 
+
+python 3.9+
 tensorflow 2.19.0
 numpy 2.2.5
 opencv-python 4.11.0.86
@@ -36,6 +35,6 @@ matplotlib 3.10.1
 scikit-learn 1.6.1
 
 
-📄 License
+📄 License: 
 This project is licensed under the MIT License.
 
