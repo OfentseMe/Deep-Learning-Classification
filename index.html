@@ -11,7 +11,44 @@
       margin: 0;
       padding: 0;
     }
-    <script src="script.js"></script>
+    <!-- Lightbox Script -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const images = document.querySelectorAll(".image-card img");
+
+    images.forEach(img => {
+      img.style.cursor = "pointer";
+      img.addEventListener("click", () => {
+        const overlay = document.createElement("div");
+        overlay.style.position = "fixed";
+        overlay.style.top = "0";
+        overlay.style.left = "0";
+        overlay.style.width = "100%";
+        overlay.style.height = "100%";
+        overlay.style.background = "rgba(0,0,0,0.8)";
+        overlay.style.display = "flex";
+        overlay.style.alignItems = "center";
+        overlay.style.justifyContent = "center";
+        overlay.style.zIndex = "9999";
+
+        const bigImage = document.createElement("img");
+        bigImage.src = img.src;
+        bigImage.style.maxWidth = "90%";
+        bigImage.style.maxHeight = "90%";
+        bigImage.style.border = "4px solid white";
+        bigImage.style.borderRadius = "8px";
+
+        overlay.appendChild(bigImage);
+        document.body.appendChild(overlay);
+
+        overlay.addEventListener("click", () => {
+          overlay.remove();
+        });
+      });
+    });
+  });
+</script>
+
 
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
