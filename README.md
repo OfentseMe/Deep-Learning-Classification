@@ -25,7 +25,7 @@ U-Net: Convolutional Networks for Biomedical Image Segmentation: https://arxiv.o
 Originally designed for biomedical segmentation, U-Net has proven highly effective for general semantic segmentation tasks such as road extraction from aerial images.
 
 
-🔧 Prerequisites: 
+🔧 Prerequisites
 
 python 3.9+
 tensorflow 2.19.0
@@ -35,6 +35,7 @@ matplotlib 3.10.1
 scikit-learn 1.6.1
 
 
-📄 License: 
+📄 License
+
 This project is licensed under the MIT License.
 
