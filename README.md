@@ -2,6 +2,8 @@
 
 This project implements a deep learning model for segmenting roads from high-resolution aerial imagery. Built on the U-Net architecture, the model was trained using the DeepGlobe 2018 Road Extraction Dataset. It forms part of ongoing research into automating road infrastructure analysis through machine learning.
 
+Github pages: https://ofentseme.github.io/Deep-Learning-Classification/
+
 🧠 Project Highlights
 
 - Semantic segmentation using U-Net
